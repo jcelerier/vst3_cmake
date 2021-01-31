@@ -37,14 +37,14 @@ macro(smtg_setup_platform_toolset)
     #------------
     if(UNIX)
         if(XCODE)
-            set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++14") # Support c++14
+            set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++17") # Support c++14
             set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++")
-            add_compile_options(-Winconsistent-missing-override) # Suggest override when missing 
+            add_compile_options(-Winconsistent-missing-override) # Suggest override when missing
             add_compile_options(-ffast-math -ffp-contract=fast)
         else()
             set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
-            set(CMAKE_CXX_STANDARD 14)                  # Support c++14
-            add_compile_options(-Wsuggest-override)     # Suggest override when missing 
+            set(CMAKE_CXX_STANDARD 17)                  # Support c++14
+            add_compile_options(-Wsuggest-override)     # Suggest override when missing
             if(SMTG_MAC)
                 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
                 link_libraries(c++)
@@ -60,7 +60,7 @@ macro(smtg_setup_platform_toolset)
         endif()
     #------------
     elseif(SMTG_WIN)
-        set(CMAKE_CXX_STANDARD 14)                          # Support c++14
+        set(CMAKE_CXX_STANDARD 17)                          # Support c++14
         if(MINGW)
             set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-multichar")
             set(common_linker_flags "-Wl,--no-undefined")
